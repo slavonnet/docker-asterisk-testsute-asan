@@ -19,7 +19,7 @@ RUN  git clone https://github.com/asterisk/asterisk /usr/src/asterisk && \
 	./configure  --prefix=/usr --enable-dev-mode && \
 	make menuselect.makeopts && \ 
 	menuselect/menuselect --enable ADDRESS_SANITIZER --enable-category MENUSELECT_TESTS --enable DONT_OPTIMIZE --enable TEST_FRAMEWORK menuselect.makeopts && \
-	make -j"$(nproc)" make install && make config && make samples && \
+	make -j"$(nproc)" && make install && make config && make samples && \
 	rm -rf /usr/src/asterisk
 
 
