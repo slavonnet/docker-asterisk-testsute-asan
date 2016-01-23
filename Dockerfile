@@ -13,6 +13,7 @@ RUN mkdir -p /tmp/asterisk_asan/
 VOLUME /tmp/asterisk_asan/
 
 ### ASTERISK INSTALL
+RUN git clone http://gerrit.asterisk.org/asterisk /usr/src/asterisk
 WORKDIR /usr/src/asterisk
 RUN git checkout -B ${asterisk_branch}
 RUN ./configure  --prefix=/usr --enable-dev-mode
