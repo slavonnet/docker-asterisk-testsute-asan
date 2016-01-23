@@ -13,19 +13,15 @@ RUN mkdir -p /tmp/asterisk_asan/
 VOLUME /tmp/asterisk_asan/
 
 ### ASTERISK INSTALL
-RUN git clone http://gerrit.asterisk.org/asterisk /usr/src/asterisk
-WORKDIR /usr/src/asterisk
-RUN git checkout -B ${asterisk_branch}
-RUN ./configure  --prefix=/usr --enable-dev-mode
-RUN make menuselect.makeopts
-RUN menuselect/menuselect --enable ADDRESS_SANITIZER --enable-category MENUSELECT_TESTS --enable DONT_OPTIMIZE --enable TEST_FRAMEWORK menuselect.makeopts
-RUN make -j"$(nproc)" make install && make config && make samples
+RUN  /bin/bash -c "git clone https://github.com/asterisk/asterisk /usr/src/asterisk && \ 
+	cd /usr/src/asterisk &&  \
+	git checkout -B ${asterisk_branch} && \
+	./configure  --prefix=/usr --enable-dev-mode && \
+	make menuselect.makeopts && \ 
+	menuselect/menuselect --enable ADDRESS_SANITIZER --enable-category MENUSELECT_TESTS --enable DONT_OPTIMIZE --enable TEST_FRAMEWORK menuselect.makeopts && \
+	make -j$(nproc) make install && make config && make samples && \
+	rm -rf /usr/src/asterisk"
 
-
-#CLEANUP
-RUN rm -rf /usr/src/asterisk
-
-### RUN TEST!!
 
 WORKDIR /usr/src/testsute
 ENTRYPOINT ./runtests.py --random-order --number=${CYCLES} ${TIMEOUT} | tee /tmp/asterisk_asan/output.log
