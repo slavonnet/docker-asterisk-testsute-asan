@@ -26,7 +26,7 @@ RUN  git clone https://github.com/asterisk/asterisk /usr/src/asterisk && \
 
 
 WORKDIR /usr/src/testsute
-ENTRYPOINT ./runtests.py --random-order --number=${CYCLES} ${TIMEOUT} | tee /tmp/asterisk_asan/output.log
+ENTRYPOINT ./runtests.py --random-order --number=${CYCLES} --timeout=${TIMEOUT} | tee /tmp/asterisk_asan/output.log
 CMD ["-c"]
 
 
