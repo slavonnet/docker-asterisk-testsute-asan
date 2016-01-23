@@ -13,14 +13,14 @@ RUN mkdir -p /tmp/asterisk_asan/
 VOLUME /tmp/asterisk_asan/
 
 ### ASTERISK INSTALL
-RUN  /bin/bash -c "git clone https://github.com/asterisk/asterisk /usr/src/asterisk && \ 
+RUN  git clone https://github.com/asterisk/asterisk /usr/src/asterisk && \ 
 	cd /usr/src/asterisk &&  \
 	git checkout -B ${asterisk_branch} && \
 	./configure  --prefix=/usr --enable-dev-mode && \
 	make menuselect.makeopts && \ 
 	menuselect/menuselect --enable ADDRESS_SANITIZER --enable-category MENUSELECT_TESTS --enable DONT_OPTIMIZE --enable TEST_FRAMEWORK menuselect.makeopts && \
-	make -j$(nproc) make install && make config && make samples && \
-	rm -rf /usr/src/asterisk"
+	make -j"$(nproc)" make install && make config && make samples && \
+	rm -rf /usr/src/asterisk
 
 
 WORKDIR /usr/src/testsute
