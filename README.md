@@ -19,15 +19,15 @@ docker run [--rm -it | -d] -v LOCAL_FOLDER:/tmp/asterisk_asan --name asterisk-as
 
 To pass env to comeainer use "-v ENV=VALUE"
 
-- ASAN_OPTIONS - https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
-- LSAN_OPTIONS - https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer#flags
+- ASAN_OPTIONS - [ASAN options](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)
+- LSAN_OPTIONS - [LSAN options](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer#flags)
 - CYCLES -  number of test cycles (-1 for any time)
 - TIMEOUT - timeout in secods for one test
 
 # Log files
 
 - output.log - stdout of testsute
-- log_.PID - if have ASAN or LSAN error its save to this file
+- log\_.PID - if have ASAN or LSAN error its save to this file
 
 # Defaults
 - Timeut = 120s
@@ -36,6 +36,6 @@ To pass env to comeainer use "-v ENV=VALUE"
 ## Author 
 
 Badalyan Vyacheslav
-CIO, [Open Business Solutions][https://www.open-bs.ru]
+CIO, [Open Business Solutions][(https://www.open-bs.ru)
 
 
