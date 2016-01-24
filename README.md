@@ -1,11 +1,23 @@
-# How To Run
+# How To
 
+## build fresh image 
+
+- docker build -t slavon/docker-asterisk-testsute-asan
+
+## rum precompiled image
 docker run [--rm -it | -d] -v LOCAL_FOLDER:/tmp/asterisk_asan --name asterisk-asan-master  slavon/docker-asterisk-testsute-asan 
 
-- LOCAL_FOLDER - place for logs in local PC
-- -d | **--rm -it** - backgroud / foreground 
+- -v - share local and remove folders
+- {LOCAL_FOLDER} - your local folder in PC
+- --name - name of container
+- -d - if you need backgroudn work 
+- --rm - clean after rum (don't work with -d)
+- -it - foreground 
+- slavon/docker-asterisk-testsute-asan - repo name
 
 # ENV Agrguments
+
+To pass env to comeainer use "-v ENV=VALUE"
 
 - ASAN_OPTIONS - https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
 - LSAN_OPTIONS - https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer#flags
@@ -20,5 +32,10 @@ docker run [--rm -it | -d] -v LOCAL_FOLDER:/tmp/asterisk_asan --name asterisk-as
 # Defaults
 - Timeut = 120s
 - Cycles = 1
+
+## Author 
+
+Badalyan Vyacheslav
+CIO, [Open Business Solutions][https://www.open-bs.ru]
 
 
