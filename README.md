@@ -10,10 +10,10 @@ docker run [--rm -it | -d] -v LOCAL_FOLDER:/tmp/asterisk_asan --name asterisk-as
 - -v - share local and remove folders
 - {LOCAL_FOLDER} - your local folder in PC
 - --name - name of container
-- -d - if you need backgroudn work 
+- -d - work in background 
 - --rm - clean after rum (don't work with -d)
-- -it - foreground 
-- slavon/docker-asterisk-testsute-asan - repo name
+- -it - work in foreground 
+- slavon/docker-asterisk-testsute-asan - our repo name
 
 # ENV Agrguments
 
