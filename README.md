@@ -4,7 +4,7 @@
 
 - docker build -t slavon/docker-asterisk-testsute-asan
 
-## rum precompiled image
+## run precompiled image
 docker run [--rm -it | -d] -v LOCAL_FOLDER:/tmp/asterisk_asan --name asterisk-asan-master  slavon/docker-asterisk-testsute-asan 
 
 - -v - share local and remove folders
