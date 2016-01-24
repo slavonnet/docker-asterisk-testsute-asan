@@ -7,8 +7,7 @@ ENV ASAN_OPTIONS="log_path=/tmp/asterisk_asan/log_"
 ENV LSAN_OPTIONS ""
 ENV CYCLES=1
 ENV TIMEOUT=160
-
-ENV NPROC 32
+ENV proc=32
 
 RUN mkdir -p /tmp/asterisk_asan/
 
@@ -21,7 +20,7 @@ RUN  git clone https://github.com/asterisk/asterisk /usr/src/asterisk && \
 	./configure  --prefix=/usr --enable-dev-mode && \
 	make menuselect.makeopts && \ 
 	menuselect/menuselect --enable ADDRESS_SANITIZER --enable-category MENUSELECT_TESTS --enable DONT_OPTIMIZE --enable TEST_FRAMEWORK menuselect.makeopts && \
-	make -j"$(NPROC)" && make install && make config && make samples && \
+	make -j${proc} && make install && make config && make samples && \
 	rm -rf /usr/src/asterisk
 
 
