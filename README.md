@@ -36,6 +36,6 @@ To pass env to comeainer use "-v ENV=VALUE"
 ## Author 
 
 Badalyan Vyacheslav
-CIO, [Open Business Solutions][(https://www.open-bs.ru)
+CIO, [Open Business Solutions](https://www.open-bs.ru)
 
 
