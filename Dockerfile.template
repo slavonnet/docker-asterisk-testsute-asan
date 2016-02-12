@@ -24,7 +24,7 @@ RUN  git clone -b ${asterisk_branch} --depth 1 http://gerrit.asterisk.org/asteri
 
 
 WORKDIR /usr/src/testsute
-COPY ./../run-my-test.sh /usr/src/testsute/
+COPY ./run-my-test.sh /usr/src/testsute/
 RUN chmod a+x ./run-my-test.sh
 
 ENTRYPOINT ./run-my-test.sh 
