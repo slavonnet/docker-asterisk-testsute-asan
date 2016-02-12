@@ -24,7 +24,10 @@ RUN  git clone -b ${asterisk_branch} https://github.com/asterisk/asterisk /usr/s
 
 
 WORKDIR /usr/src/testsute
-ENTRYPOINT ./runtests.py --random-order --number=${CYCLES} --timeout=${TIMEOUT} | tee /tmp/asterisk_asan/output.log
+COPY ./run-my-test.sh /usr/src/testsute/
+RUN chmod a+x ./run-my-test.sh
+
+ENTRYPOINT ./run-my-test.sh 
 CMD ["-c"]
 
 
