@@ -14,7 +14,7 @@ RUN mkdir -p /tmp/asterisk_asan/
 VOLUME /tmp/asterisk_asan/
 
 ### ASTERISK INSTALL
-RUN  git clone -b ${asterisk_branch} https://github.com/asterisk/asterisk /usr/src/asterisk && \ 
+RUN  git clone -b ${asterisk_branch} --depth 1 http://gerrit.asterisk.org/asterisk /usr/src/asterisk && \ 
 	cd /usr/src/asterisk &&  \
 	./configure  --prefix=/usr --enable-dev-mode && \
 	make menuselect.makeopts && \ 
