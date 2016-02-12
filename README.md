@@ -21,17 +21,24 @@ To pass env to comeainer use "-v ENV=VALUE"
 
 - ASAN_OPTIONS - [ASAN options](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags)
 - LSAN_OPTIONS - [LSAN options](https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer#flags)
-- CYCLES -  number of test cycles (-1 for any time)
 - TIMEOUT - timeout in secods for one test
 
 # Log files
 
-- output.log - stdout of testsute
-- log\_.PID - if have ASAN or LSAN error its save to this file
+ASAN_TYPE/TEST_ID/\*.txt
+
+where
+- ASAN_TYPE is address-TYPE_OF_ASAN or leak
+- TEST_ID is test where get bug
+
+where \*.txt
+- full.txt - asterisk full log 
+- messages.txt - asterisk messages log
+- runtest_log.txt - testsute log
+- asan.txt - asan full error info
 
 # Defaults
 - Timeut = 120s
-- Cycles = 1
 
 ## Author 
 
