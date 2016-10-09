@@ -1,4 +1,4 @@
-FROM slavon/asterisk-testsute-baseimage:onbuild-pjproject_2.4.5-testsute_master
+FROM slavon/asterisk-testsute-baseimage:onbuild-pjproject_2.5.5-testsute_master
 
 MAINTAINER Badalyan Vyacheslav <v.badalyan@open-bs.ru>
 
