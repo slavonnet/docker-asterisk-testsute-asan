@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -rf /tmp/asterisk-testsuite/*
+
 ./runtests.py -l | grep ") tests" | while read line; do 
 
 	TEST_ID=`echo $line | cut -d " " -f1`
@@ -34,8 +36,8 @@
 	rm -rf /tmp/asterisk_asan/output.log
 	rm -rf /tmp/asterisk_asan/log_*
 	rm -rf /var/log/asterisk/*
-	rm -rf /tmp/asterisk-testsuite/*
 
+	find /tmp/asterisk-testsuite -name "full.txt" -delete
 done;
 
 
