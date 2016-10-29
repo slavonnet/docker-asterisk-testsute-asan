@@ -17,6 +17,7 @@ VOLUME /tmp/asterisk_asan/
 
 RUN git clone -b ${testsute_branch} --depth 1 https://gerrit.asterisk.org/testsuite /usr/src/testsute && \
 	cd /usr/src/testsute/asttest && \
+	sed -i -e "s/500000/5000000/" lib/lua/astlib.lua && \
 	make && make install && \
 	cd /usr/src/testsute/addons && \
 	make update && \
