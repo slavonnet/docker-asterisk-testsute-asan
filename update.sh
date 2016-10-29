@@ -9,6 +9,7 @@ mkdir onbuild-pjproject_2.5.5-testsute_master-asterisk_13
 for i in onbuild*; do 
 	cp -f Dockerfile.template $i/Dockerfile
 	cp -f run-my-test.sh $i/run-my-test.sh
+	cp -f MyLSan.supp $i/MyLSan.supp
 	chmod a+x $i/run-my-test.sh
 done
 
