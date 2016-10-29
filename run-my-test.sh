@@ -37,6 +37,8 @@ rm -rf /tmp/asterisk-testsuite/*
 	rm -rf /tmp/asterisk_asan/log_*
 	rm -rf /var/log/asterisk/*
 
+	killall -9 asterisk
+
 	find /tmp/asterisk-testsuite -name "full.txt" -delete
 done;
 
