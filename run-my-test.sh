@@ -14,7 +14,7 @@ rm -rf /tmp/asterisk-testsuite/*
 
 	TEST_FILES_PATH=`find /tmp/asterisk-testsuite -name "full.txt" | grep "run_1/full" | sed -e "s/full.txt//" | tail -n1`
 
-	if [ `ls -1 /tmp/asterisk_asan/log_* | grep -c ""` -ne "0" ]; then
+	if [ `ls -1 /tmp/asterisk_asan/log_* 2>/dev/null | grep -c ""` -ne "0" ]; then
 		ASAN_FILES_PATH=`ls -1 /tmp/asterisk_asan/log_* | tail -n1`
 
 		if [ `cat $ASAN_FILES_PATH  | grep "ERROR" | grep -c "AddressSanitizer"` -ne "0" ]; then
@@ -23,11 +23,11 @@ rm -rf /tmp/asterisk-testsuite/*
 		else
 			ASAN_TYPE=leak
 		fi;
-			mkdir -p /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID
-			cp $ASAN_FILES_PATH /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID/asan.txt
-		else
-			mkdir -p /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID
-	fi
+		mkdir -p /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID
+		cp $ASAN_FILES_PATH /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID/asan.txt
+	else
+		mkdir -p /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID
+	fi;
 
 	cp ${TEST_FILES_PATH}full.txt /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID/
 	cp ${TEST_FILES_PATH}messages.txt /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID/
