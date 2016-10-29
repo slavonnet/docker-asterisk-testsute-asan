@@ -3,6 +3,7 @@ FROM slavon/asterisk-testsute-baseimage:onbuild-pjproject_2.5.5-testsute_master
 MAINTAINER Badalyan Vyacheslav <v.badalyan@open-bs.ru>
 
 ENV asterisk_branch=master
+ENV testsute_branch=master
 ENV ASAN_OPTIONS="log_path=/tmp/asterisk_asan/log_"
 ENV LSAN_OPTIONS="suppressions=/usr/src/testsute/MyLSan.supp"
 ENV CYCLES=1
@@ -13,8 +14,18 @@ RUN mkdir -p /tmp/asterisk_asan/
 
 VOLUME /tmp/asterisk_asan/
 
+### ASTERISK TEST SUTE
+
+RUN git clone -b ${testsute_branch} --depth 1 https://gerrit.asterisk.org/testsuite /usr/src/testsute && \
+	cd /usr/src/testsute/asttest && \
+	make && make install && \
+	cd /usr/src/testsute/addons && \
+	make update && \
+	cd starpy && \
+	python setup.py install
+
 ### ASTERISK INSTALL
-RUN  git clone -b ${asterisk_branch} --depth 1 http://gerrit.asterisk.org/asterisk /usr/src/asterisk && \ 
+RUN git clone -b ${asterisk_branch} --depth 1 http://gerrit.asterisk.org/asterisk /usr/src/asterisk && \ 
 	cd /usr/src/asterisk &&  \
 	./configure  --prefix=/usr --enable-dev-mode && \
 	make menuselect.makeopts && \ 
