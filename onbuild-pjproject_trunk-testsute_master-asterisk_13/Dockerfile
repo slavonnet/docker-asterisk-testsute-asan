@@ -17,7 +17,8 @@ VOLUME /tmp/asterisk_asan/
 
 RUN git clone -b ${testsute_branch} --depth 1 https://gerrit.asterisk.org/testsuite /usr/src/testsute && \
 	cd /usr/src/testsute/asttest && \
-	sed -i -e "s/500000/5000000/" lib/lua/astlib.lua && \
+	sed -i -e "s/500000/30000000/" lib/lua/astlib.lua && \
+	sed -i -e "s/timeout = 90 if self.valgrind_enabled else 5/timeout = 90 if self.valgrind_enabled else 30/" ./../lib/python/asterisk/asterisk.py && \
 	make && make install && \
 	cd /usr/src/testsute/addons && \
 	make update && \
