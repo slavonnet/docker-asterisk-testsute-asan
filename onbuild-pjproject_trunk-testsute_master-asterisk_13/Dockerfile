@@ -4,9 +4,6 @@ MAINTAINER Badalyan Vyacheslav <v.badalyan@open-bs.ru>
 
 ENV asterisk_branch=13
 ENV testsute_branch=master
-ENV ASAN_OPTIONS="log_path=/tmp/asterisk_asan/log_"
-ENV LSAN_OPTIONS=""
-ENV UBSAN_OPTIONS="print_stacktrace=1"
 ENV CYCLES=1
 ENV TIMEOUT=160
 
@@ -35,6 +32,9 @@ RUN git clone -b ${asterisk_branch} --depth 1 http://gerrit.asterisk.org/asteris
 	make && make install && make config && make samples 
 ###	rm -rf /usr/src/asterisk
 
+ENV ASAN_OPTIONS log_path=/tmp/asterisk_asan/log_:verbosity=1
+ENV LSAN_OPTIONS suppressions=/usr/src/testsute/MyLSan.supp
+ENV UBSAN_OPTIONS print_stacktrace=1
 
 WORKDIR /usr/src/testsute
 COPY ./run-my-test.sh /usr/src/testsute/
