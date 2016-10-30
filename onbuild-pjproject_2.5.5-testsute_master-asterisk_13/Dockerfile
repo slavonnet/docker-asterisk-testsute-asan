@@ -4,8 +4,9 @@ MAINTAINER Badalyan Vyacheslav <v.badalyan@open-bs.ru>
 
 ENV asterisk_branch=13
 ENV testsute_branch=master
-ENV ASAN_OPTIONS="log_path=/tmp/asterisk_asan/log_:suppressions=/usr/src/testsute/MyLSan.supp"
+ENV ASAN_OPTIONS="log_path=/tmp/asterisk_asan/log_"
 ENV LSAN_OPTIONS=""
+ENV UBSAN_OPTIONS="print_stacktrace=1"
 ENV CYCLES=1
 ENV TIMEOUT=160
 
