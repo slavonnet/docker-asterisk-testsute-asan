@@ -43,6 +43,6 @@ where \*.txt
 ## Author 
 
 Badalyan Vyacheslav
-CIO, [Open Business Solutions](https://www.sbssoft.ru)
+CIO, [SBS Soft](https://www.sbssoft.ru)
 
 
