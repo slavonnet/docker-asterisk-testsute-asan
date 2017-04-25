@@ -28,11 +28,11 @@ RUN git clone -b ${asterisk_branch} --depth 1 http://gerrit.asterisk.org/asteris
 	cd /usr/src/asterisk &&  \
 	./configure  --prefix=/usr --enable-dev-mode && \
 	make menuselect.makeopts && \ 
-	menuselect/menuselect --enable ADDRESS_SANITIZER --enable UNDEFINED_SANITIZER --enable-category MENUSELECT_TESTS --enable DONT_OPTIMIZE --enable TEST_FRAMEWORK menuselect.makeopts && \
+	menuselect/menuselect --enable ADDRESS_SANITIZER --enable-category MENUSELECT_TESTS --enable DONT_OPTIMIZE --enable TEST_FRAMEWORK menuselect.makeopts && \
 	make && make install && make config && make samples 
 ###	rm -rf /usr/src/asterisk
 
-ENV ASAN_OPTIONS log_path=/tmp/asterisk_asan/log_:verbosity=1
+ENV ASAN_OPTIONS log_path=/tmp/asterisk_asan/log_
 ENV LSAN_OPTIONS suppressions=/usr/src/testsute/MyLSan.supp
 ENV UBSAN_OPTIONS print_stacktrace=1
 
