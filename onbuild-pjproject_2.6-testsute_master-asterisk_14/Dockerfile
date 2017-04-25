@@ -1,8 +1,8 @@
-FROM slavon/asterisk-testsute-baseimage:onbuild-pjproject_2.5.5-testsute_master
+FROM slavon/asterisk-testsute-baseimage:onbuild-pjproject_2.6-testsute_master
 
 MAINTAINER Badalyan Vyacheslav <v.badalyan@open-bs.ru>
 
-ENV asterisk_branch=13
+ENV asterisk_branch=14
 ENV testsute_branch=master
 ENV CYCLES=1
 ENV TIMEOUT=160
