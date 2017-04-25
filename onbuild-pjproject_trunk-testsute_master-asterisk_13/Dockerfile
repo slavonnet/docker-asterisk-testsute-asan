@@ -5,7 +5,7 @@ MAINTAINER Badalyan Vyacheslav <v.badalyan@open-bs.ru>
 ENV asterisk_branch=13
 ENV testsute_branch=master
 ENV CYCLES=1
-ENV TIMEOUT=160
+ENV TIMEOUT=360
 
 RUN mkdir -p /tmp/asterisk_asan/
 
@@ -15,8 +15,9 @@ VOLUME /tmp/asterisk_asan/
 
 RUN git clone -b ${testsute_branch} --depth 1 https://gerrit.asterisk.org/testsuite /usr/src/testsute && \
 	cd /usr/src/testsute/asttest && \
-	sed -i -e "s/500000/30000000/" lib/lua/astlib.lua && \
-	sed -i -e "s/timeout = 90 if self.valgrind_enabled else 5/timeout = 90 if self.valgrind_enabled else 30/" ./../lib/python/asterisk/asterisk.py && \
+	sed -i -e "s/\"-g\",//" ./../lib/python/asterisk/asterisk.py && \
+	sed -i -e "s/\"-g\",//" lib/lua/astlib.lua && \
+	sed -i -e "s/dumpcore.*=.*yes$//" ./../configs/asterisk.options.conf.inc && \
 	make && make install && \
 	cd /usr/src/testsute/addons && \
 	make update && \
@@ -33,7 +34,7 @@ RUN git clone -b ${asterisk_branch} --depth 1 http://gerrit.asterisk.org/asteris
 ###	rm -rf /usr/src/asterisk
 
 ENV ASAN_OPTIONS log_path=/tmp/asterisk_asan/log_
-ENV LSAN_OPTIONS suppressions=/usr/src/testsute/MyLSan.supp
+ENV LSAN_OPTIONS suppressions=/usr/src/testsute/MyLSan.supp:exitcode=0
 ENV UBSAN_OPTIONS print_stacktrace=1
 
 WORKDIR /usr/src/testsute

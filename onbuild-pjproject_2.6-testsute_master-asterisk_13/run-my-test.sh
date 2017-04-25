@@ -25,7 +25,7 @@ rm -rf /tmp/asterisk-testsuite/*
 		cp $asan_file /tmp/asterisk_asan/$ASAN_TYPE/$TEST_ID/
 	done;
 
-	for i in `ls -1 /tmp/asterisk_asan/*/$TEST_ID`; do
+	for i in `ls -1d /tmp/asterisk_asan/*/$TEST_ID`; do
 		cp ${TEST_FILES_PATH}full.txt $i/
 		cp ${TEST_FILES_PATH}messages.txt $i/
 		cp /tmp/asterisk_asan/output.log $i/runtest_log.txt
